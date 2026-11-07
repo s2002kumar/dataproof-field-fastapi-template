@@ -1,0 +1,19 @@
+# Protected: read from the base branch only. Every user keeps their email, name, flags and
+# password hash. Keyed by email (unique in this schema), not by id: a migration may change how
+# users are identified, never who they are.
+contract_id = "template.users"
+version = 1
+description = "Every user keeps their email, full name, active and superuser flags and password hash."
+required = true
+severity = "CRITICAL"
+key_columns = ["email"]
+query_sql = """
+SELECT u.email, u.full_name, u.is_active, u.is_superuser, u.hashed_password
+FROM "user" AS u
+"""
+
+[expected_columns]
+full_name = { kind = "EXACT" }
+is_active = { kind = "EXACT" }
+is_superuser = { kind = "EXACT" }
+hashed_password = { kind = "EXACT" }

@@ -1,0 +1,19 @@
+# Protected: read from the base branch only. Every item keeps its description and its owner,
+# read through the foreign key as the owner's email, so the check holds whatever type the keys
+# have. Keyed by title, which this fixture keeps unique. A LEFT JOIN, so an item that loses its
+# owner shows as a mismatch rather than disappearing.
+contract_id = "template.item_owners"
+version = 1
+description = "Every item keeps its description and belongs to the same user."
+required = true
+severity = "CRITICAL"
+key_columns = ["title"]
+query_sql = """
+SELECT i.title, i.description, u.email AS owner_email
+FROM item AS i
+LEFT JOIN "user" AS u ON u.id = i.owner_id
+"""
+
+[expected_columns]
+description = { kind = "EXACT" }
+owner_email = { kind = "EXACT" }

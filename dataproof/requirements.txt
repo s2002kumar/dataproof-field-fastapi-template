@@ -1,0 +1,8 @@
+# What backend/app/alembic/env.py imports, pinned to backend/poetry.lock at this commit
+# (cc480df7). These names replace DataProof's own pins for alembic, sqlalchemy and psycopg.
+alembic==1.13.1
+sqlalchemy==2.0.28
+psycopg[binary]==3.1.18
+sqlmodel==0.0.19
+pydantic==2.6.4
+email-validator==2.1.1

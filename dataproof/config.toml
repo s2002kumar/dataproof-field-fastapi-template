@@ -1,0 +1,37 @@
+# DataProof reads this file from the base branch only: a pull request cannot change what it is
+# held to. Oracles, the fixture, the requirements and binding approvals live on the base branch
+# for the same reason.
+version = 1
+
+[alembic]
+config = "backend/alembic.ini"
+# What the template's env.py imports (its models: sqlmodel, pydantic, email-validator), at the
+# versions this commit's backend/poetry.lock pins.
+requirements = "dataproof/requirements.txt"
+timeout_seconds = 300
+
+# The template's env.py builds its URL from its own settings, not DATABASE_URL. Each value is
+# one of the disposable database's coordinates, resolved per step. alembic.ini has no
+# prepend_sys_path at this commit, so env.py's `from app.models import SQLModel` needs the
+# backend directory (the step's working directory) on the path, as the template's Dockerfile
+# sets PYTHONPATH=/app.
+[alembic.environment]
+POSTGRES_SERVER = "{host}"
+POSTGRES_PORT = "{port}"
+POSTGRES_USER = "{user}"
+POSTGRES_PASSWORD = "{password}"
+POSTGRES_DB = "{dbname}"
+PYTHONPATH = "."
+
+[fixture]
+# Loaded into both databases after the base branch's migrations; its SHA-256 pins the dataset.
+sql = "dataproof/fixture.sql"
+
+[contracts]
+oracle_dir = "dataproof/oracles/"
+binding_dir = "dataproof/bindings/"
+approved_bindings = []
+rejected_bindings = []
+
+[policy]
+forks = "run"

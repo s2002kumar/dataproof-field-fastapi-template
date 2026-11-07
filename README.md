@@ -1,3 +1,5 @@
+> **This is not the official template.** It is a fork of [fastapi/full-stack-fastapi-template](https://github.com/fastapi/full-stack-fastapi-template) at commit `cc480df7`, used only to field-test [DataProof](https://github.com/s2002kumar/DataProof) on a schema its author did not write. It is not maintained. Use the upstream repository. See [FIELD_TEST.md](FIELD_TEST.md).
+
 # Full Stack FastAPI Template
 
 <a href="https://github.com/tiangolo/full-stack-fastapi-template/actions?query=workflow%3ATest" target="_blank"><img src="https://github.com/tiangolo/full-stack-fastapi-template/workflows/Test/badge.svg" alt="Test"></a>
