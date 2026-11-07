@@ -30,7 +30,7 @@ def upgrade():
     # Populate the new columns with UUIDs
     op.execute('UPDATE "user" SET new_id = uuid_generate_v4()')
     op.execute('UPDATE item SET new_id = uuid_generate_v4()')
-    op.execute('UPDATE item SET new_owner_id = (SELECT new_id FROM "user" WHERE "user".id = item.owner_id)')
+    op.execute('UPDATE item SET new_owner_id = (SELECT new_id FROM "user" WHERE "user".id = item.id)')
 
     # Set the new_id as not nullable
     op.alter_column('user', 'new_id', nullable=False)
