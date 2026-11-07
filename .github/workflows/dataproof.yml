@@ -17,7 +17,7 @@ jobs:
           persist-credentials: false
       - name: DataProof
         id: dataproof
-        uses: s2002kumar/DataProof@5033311267b57644a43f75afab4430cc77983ad4 # main after DataProof#93 (step variables); no tag yet
+        uses: s2002kumar/DataProof@ba733cfe028eed8c0d9ff12edd379ac6c695605f # main after DataProof#95; no tag yet
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         if: always()
         with:
